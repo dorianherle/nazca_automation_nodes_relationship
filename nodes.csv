@@ -1,0 +1,1037 @@
+id:ID,name,type,desc,:LABEL
+0,nazca,,An overview of the Nazca modules.,Module
+1,nazca.cfg,,This module is for configuring Nazca settings and sharing variables between Nazca modules.,Module
+2,active_cell(),,Get the active cell. The 'active cell' is the last opened Cell object that has not been closed yet.,Function
+3,formatplot(),,Update matplotlib plotting style for graphs.,Function
+4,gds_cellname_cleanup(name),,"Placeholder function that can be overruled in a foundry PDK. This function should make sure only valid cellnames are used, i.e. formats excepted by the foundry.",Function
+5,name,str,cellname,Parameter
+6,reset_pinstyles(),,,Function
+7,,,Example of getting the active cell.,Example
+8,nazca.clipper,,Module with boolean operations on polygons and grow/shrink.,Module
+9,"clip_polygons(paths_A, paths_B, accuracy=1e-08)",,Clip polygons and return a list with the resulting polygon(s). This function returns the intersection of the polygons (paths_A AND paths_B).,Function
+10,paths_A,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+11,paths_B,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+12,accuracy,float,accuracy in micrometers of the location of the intermediate points.,Parameter
+13,"diff_polygons(paths_A, paths_B, accuracy=1e-08)",,Subtract polygons and return a list with the resulting polygon(s). This function returns the subtraction of the polygons (paths_A NOT paths_B).,Function
+14,paths_A,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+15,paths_B,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+16,accuracy,float,accuracy in micrometers of the location of the intermediate points.,Parameter
+17,"grow_polygons(paths, grow=5, accuracy=0.1, jointype='round')",,Grow or shrink polygons and return the resulting structures.,Function
+18,paths,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+19,accuracy,float,accuracy in micrometers of the location of the intermediate points. The accuracy determines the grid on which the grown path is drawn.,Parameter
+20,jointype,str,specifies the type of growing that is used. The jointype is one of 'round' (default,Parameter
+21,"merge_polygons(paths, accuracy=1e-08)",,Merge polygons and return a list with the resulting polygon(s). This function returns the union of the polygons (logical OR of all paths).,Function
+22,paths,list,"list of polygons. A polygon is list of coordinates (x, y",Parameter
+23,accuracy,float,accuracy in micrometers of the location of the intermediate points. There is no good reason to deviate from the default (default =1e-8 micrometers,Parameter
+24,"polygons_AND(paths_A, paths_B, accuracy=1e-08)",,Clip polygons and return a list with the resulting polygon(s). This function returns the intersection of the polygons (paths_A AND paths_B).,Function
+25,paths_A,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+26,paths_B,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+27,accuracy,float,accuracy in micrometers of the location of the intermediate points.,Parameter
+28,"polygons_NOT(paths_A, paths_B, accuracy=1e-08)",,Subtract polygons and return a list with the resulting polygon(s). This function returns the subtraction of the polygons (paths_A NOT paths_B).,Function
+29,paths_A,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+30,paths_B,list,"list of polygons that each have a list of coordinates (x, y",Parameter
+31,accuracy,float,accuracy in micrometers of the location of the intermediate points.,Parameter
+32,"polygons_OR(paths, accuracy=1e-08)",,Merge polygons and return a list with the resulting polygon(s). This function returns the union of the polygons (logical OR of all paths).,Function
+33,paths,list,"list of polygons. A polygon is list of coordinates (x, y",Parameter
+34,accuracy,float,accuracy in micrometers of the location of the intermediate points. There is no good reason to deviate from the default (default =1e-8 micrometers,Parameter
+35,"polygons_XOR(paths_A, paths_B, accuracy=1e-08)",,This function returns a list of polygons that result from the logical XOR operation: paths_A XOR paths_B.,Function
+36,paths,list,"list of polygons. A polygon is list of coordinates (x, y",Parameter
+37,accuracy,float,accuracy in micrometers of the location of the intermediate points. There is no good reason to deviate from the default (default =1e-8 micrometers,Parameter
+38,"Xor_polygons(paths_A, paths_B, accuracy=1e-08)",,This function returns a list of polygons that result from the logical XOR operation: paths_A XOR paths_B.,Function
+39,paths,list,"list of polygons. A polygon is list of coordinates (x, y",Parameter
+40,accuracy,float,accuracy in micrometers of the location of the intermediate points. There is no good reason to deviate from the default (default =1e-8 micrometers,Parameter
+41,,,Documentation of pyclipper,Example
+42,,,Example documentation,Example
+43,nazca.colormap,,Generate a matplotlib colormap from the csv table: csv2colormap,Module
+44,Lypdata(),,Class to export layer information to a Klayout lyp file,Class
+45,"CSV2lyp(csvfiles, lypfile)",,Write klayout .lyp layer properties file,Function
+46,csvfiles,dict,dictionary {tab-name: filename} which contains all csv files to be written to a single lyp file,Parameter
+47,lypfile,str,"filename of the .lyp file. This file will be created if it does not yet exist. If it already exists, it will be overwritten",Parameter
+48,"lyp2CSV(lypfile, infolevel=0)",,Convert a Klayout .lyp file into a .csv Nazca color table,Function
+49,lypfile,str,name of Klayout .lyp file,Parameter
+50,"lyp2pd(lypfile, infolevel=0)",,Convert a Klayout .lyp file into a Nazca color table,Function
+51,lypfile,str,name of Klayout .lyp file,Parameter
+52,"nazca2CSV(colors, filename)",,Save nazca colormap to csv file,Function
+53,colors,DataFrame,color information,Parameter
+54,filename,str,name of csv output file,Parameter
+55,nazca2lyp(filename),,Export the Nazca color DataFrame to .lyp file,Function
+56,filename,str,basename of the output csv and lyp files,Parameter
+57,"pd2lyp(tabs, lypfile)",,Write klayout .lyp layer properties file,Function
+58,csvfiles,dict,dictionary {tab-name: filename} which contains all csv files to be written to a single lyp file,Parameter
+59,lypfile,str,"filename of the .lyp file. This file will be created if it does not yet exist. If it already exists, it will be overwritten",Parameter
+60,nazca.convert_AWGtxt2nazca,,Convert BrightAWG coordinates.txt to nazca.txt by reformatting the AWG coordinates from the BrightAWG .txt outfile into Nazca format for all .txt files in a specified directory.,Module
+61,"Convert(files, xs, win, wout)",,Loop through .txt input files and write converted nazca compatible pin output files.,Function
+62,files,str | list of str,filename(s,Parameter
+63,xs,float,xsection of connection,Parameter
+64,win,float,waveguide width input side,Parameter
+65,wout,float,waveguide width output side,Parameter
+66,"Convert_file(file, xs, win, wout, warm=None)",,Reformat the AWG coordinates from the OD BrightAWG .txt file into Nazca format.,Function
+67,file,str,filename,Parameter
+68,xs,float,xsection of connection,Parameter
+69,win,float,waveguide width input side,Parameter
+70,wout,float,waveguide width output side,Parameter
+71,get_txt_files(dir),,Get all .txt files in directory path 'dir'.,Function
+72,dir,str,root directory to scan,Parameter
+73,"put_pins(file, xs, win, wout, warm=None, stubs=False)",,"Load the OD BrightAWG .txt file and place the pins in the active cell, skipping the conversion to a file with Nazca coordinates.",Function
+74,file,str,filename,Parameter
+75,xs,float,xsection of connection,Parameter
+76,win,float,waveguide width input side,Parameter
+77,wout,float,waveguide width output side,Parameter
+78,nazca.cp,,The 'cp' module provides short syntax methods to operate on the current pointer cp. The cp holds the position of the standard output of the last element in a mask layout.,Module
+79,a(),,Get cp coordinates a.,Function
+80,get_a(),,Get cp coordinates a.,Function
+81,get_xy(),,"Get cp coordinates x, y.",Function
+82,get_xya(),,"Get cp coordinates x, y, a.",Function
+83,"goto(x=0, y=0, a=0)",,Goto absolute position with cp.,Function
+84,x,float,x-position,Parameter
+85,y,float,y-position,Parameter
+86,a,float,a-position,Parameter
+87,goto_pin(p),,Goto absolute position with cp using a Pin object.,Function
+88,p,Node,"(x, y, a",Parameter
+89,here(),,Get cp.,Function
+90,"move(x=0, y=0, a=0)",,Move relative with respect to cp.,Function
+91,x,float,x-position,Parameter
+92,y,float,y-position,Parameter
+93,a,float,a-position,Parameter
+94,Offset(y=0),,Move perpendicular with respect to cp.,Function
+95,y,float,delta y,Parameter
+96,OS(y=0),,Move perpendicular with respect to cp.,Function
+97,y,float,delta y,Parameter
+98,pop(),,Pop cp from the FILO stack.,Function
+99,push(),,Push cp on the FILO stack.,Function
+100,rot(a=0),,Rotate the cp.,Function
+101,a,float,a-position,Parameter
+102,rotate(a=0),,Rotate the cp.,Function
+103,a,float,a-position,Parameter
+104,"Shift(x=0, y=0)",,"Move relative with respect to cp by x, y.",Function
+105,x,float,delta x,Parameter
+106,y,float,delta y,Parameter
+107,"Show(radius=10, width=1)",,Show location of cp by drawing a circle around it.,Function
+108,radius,float,radius of the circle,Parameter
+109,width,float,width of the circle line,Parameter
+110,Skip(x=0),,Move in the direction of cp.,Function
+111,x,float,delta x,Parameter
+112,X(),,Get cp coordinates x.,Function
+113,Xy(),,"Get cp coordinates x, y.",Function
+114,xya(),,"Get cp coordinates x, y, a.",Function
+115,y(),,Get cp coordinates y.,Function
+116,nazca.font,,Module to add text to a layout.,Module
+117,"Font(fontfile='nazca', box_layer=None, box_buf=None)",,Class to define text object in various fonts.,Class
+118,"sample(height=50, layer=1, instantiate=False)",,Return a cell with all characters present in a font.,Function
+119,height,float,height of the text in um,Parameter
+120,layer,int | string,layer number or name to place text in,Parameter
+121,instantiate,bool,"instantiate cell, default False",Parameter
+122,"text(text='Text', height=None, strokewidth=None, layer=1, align='lb', box_layer=None, box_buf=None, instantiate=False, cellname=None)",,Output a cell with text of specified dimensions and alignment.,Function
+123,text,str,text to display,Parameter
+124,height,float,"height of the text in um, default 50",Parameter
+125,strokewidth,float,approximate font stroke width in um,Parameter
+126,layer,int | string,layer number or name to place text in,Parameter
+127,align,str,"relative placement: regex: [lcr][bct], default 'lb'",Parameter
+128,box_layer,str | int | tuple,"layer reference to generate a square box behind the text, default None",Parameter
+129,box_buf,float,extra buffer for the box_layer in um,Parameter
+130,instantiate,bool,"instantiate cell, default False",Parameter
+131,cellname,str,"overrule the standard hash text cell naming, default None",Parameter
+132,"textheight(text, height=50)",,Return total text height of line(s) in text.,Function
+133,text,str,text to calculate the text height,Parameter
+134,height,float,"height of the text in um, default 50",Parameter
+135,,,A simple way to put text in the layout using default settings.,Example
+136,,,Generate a sample of all characters available in the font.,Example
+137,,,Output a cell with the text 'Hello world' centered.,Example
+138,nazca.gds_cellreplace,,Module for replacing static cells and parametric cells.,Module
+139,"replaceCells(gdsin, gdsout=None, PcellFunctionMap=None, ScellMapping=None, md5=False, md5suffix='_md5', suffix='_white', addtime=True, infolevel=0, layermap=None, layermapmode=None)",,Replace black with white cells in a GDS file and export the result.,Function
+140,gdsin,unknown,"['str', 'input filename']",Parameter
+141,gdsout,unknown,"['str', 'optional output filename']",Parameter
+142,PcellFunctionMap,unknown,"['dict', 'black to white dictionary mapping basename to Pcell function']",Parameter
+143,ScellMapping,unknown,"['dict', 'mapping of one or more cell libraries from black to white']",Parameter
+144,md5,unknown,"['bool', 'save md5sum. Default=False']",Parameter
+145,md5suffix,unknown,"['str', ""suffix for md5sum file. Default = '_md5'""]",Parameter
+146,suffix,unknown,"['str', ""suffix of the output GDS. Default = '_white'""]",Parameter
+147,addtime,unknown,"['bool', 'add time (date) as last suffix. Default = True']",Parameter
+148,infolevel,unknown,"['int', 'amount of debug info printed']",Parameter
+149,nazca.generic_bend,,Module to generate parametric waveguide curves or 'pcurves' and sine bends.,Module
+150,"Curve2polyline(fie, xya, acc, args=())",,Generate a polyline from a parameterized curve.,Function
+151,fie,function,the curve function that takes one parameter that runs from 0 to 1 as first argument. The curve starts at the origin at 0 angle,Parameter
+152,xya,tuple,"the position (x, y, a",Parameter
+153,acc,float,desired accuracy in micrometer,Parameter
+154,args,tuple,additional arguments to be passed to the curve function,Parameter
+155,Curve_AB(Lp),,Calculate array A and array B for given L.,Function
+156,Lp,float,scaled curve-parameter point,Parameter
+157,"distance_point2line(P, A, B)",,Calculate the shortest distance of point P to a line through A and B.,Function
+158,P,float,"float, (x, y",Parameter
+159,A,float,"float, (x, y",Parameter
+160,B,float,"float, (x, y",Parameter
+161,"gb_coefficients(xya, radius1=0, radius2=0)",,"Calculate coefficients A, B and L.",Function
+162,xya,tuple,"(x, y, a",Parameter
+163,radius1,float,radius of curvature at start,Parameter
+164,radius2,float,radius of curvature at end,Parameter
+165,"gb_point(t, A, B, Lp)",,Calculate generic-bend point for parameter t.,Function
+166,t,float,"normalized parameter in range [0,1]",Parameter
+167,A,list of float,array of six,Parameter
+168,B,list of float,array of six,Parameter
+169,Lp,float,"scaled curve-parameter point, scales t",Parameter
+170,"getCurvature(A, B, Lp)",,Get the local curvature at a given point Lp of the parametrized curve.,Function
+171,A,list of float,six coefficients,Parameter
+172,B,list of float,six coefficients,Parameter
+173,Lp,float,scaled curve-parameter point,Parameter
+174,invert_matrix(Lp),,Helper function returning the solution matrix as a function of Lp.,Function
+175,Lp,float,scaled curve-parameter point,Parameter
+176,max_curvature(L),,Calculate the maximum curvature along L.,Function
+177,L,float,scaled curve-parameter size,Parameter
+178,"Sinebend_point(t, distance, offset)",,Calculate sine bend point for parameter t. This bend has zero curvature at both ends. It provides an S-shape connection.,Function
+179,t,float,"normalized parameter in range [0,1]",Parameter
+180,distance,float,scaling factor of x with t,Parameter
+181,offset,float,scaling factor of y with t,Parameter
+182,nazca.geometries,,"A set of functions to create polygon geometries for shapes such as boxes, tapers, arcs, and frames.",Module
+183,"MMI_iopoly(wmmi=10, o=None, wio=None, angle=53)",,"Helper routine which generates one side of an MMI outline polygon, from bottom to top.",Function
+184,wmmi,float,width of the MMI,Parameter
+185,o,None,unspecified,Parameter
+186,wio,None,input/output waveguide width,Parameter
+187,angle,float,corner cut angle in degrees,Parameter
+188,"MMI_poly(wmmi=10, lmmi=100, wi=None, wo=None, oi=None, oo=None, angle=53)",,Returns an MMI polygon outline with angled corners for reduced reflections.,Function
+189,wmmi,float,width of the MMI,Parameter
+190,lmmi,float,length of the MMI,Parameter
+191,wi,float | list,input waveguide width(s,Parameter
+192,wo,float | list,output waveguide width(s,Parameter
+193,oi,list,input waveguide offsets from center,Parameter
+194,oo,list,output waveguide offsets from center,Parameter
+195,angle,float,corner cut angle in degrees,Parameter
+196,"arc(radius=5, width=2, angle=180, grow=0, N=20)",,Return arc polygon.,Function
+197,radius,float,radius of the arc,Parameter
+198,width,float,width of the arc,Parameter
+199,angle,float,angle of the arc,Parameter
+200,grow,int,growth factor,Parameter
+201,N,int,unspecified,Parameter
+202,"box(length=10, width=7, grow=0)",,Return box polygon.,Function
+203,length,float,length of the box,Parameter
+204,width,float,width of the box,Parameter
+205,grow,int,growth factor,Parameter
+206,"mid_pts(p1, p2, factor=0)",,Return point on the line between p1 and p2.,Function
+207,p1,point,starting point,Parameter
+208,p2,point,ending point,Parameter
+209,factor,float,factor determining the position between points,Parameter
+210,"monkey(width=1000, height=1000)",,Return a polygon with the Nazca monkey.,Function
+211,width,float,width of the bounding box,Parameter
+212,height,float,height of the bounding box,Parameter
+213,"parallelogram(length=10, height=5, angle=45, position=1, shift=0,0)",,Return parallelogram polygon.,Function
+214,length,float,length of base,Parameter
+215,height,float,height of parallelogram,Parameter
+216,angle,float,side angle,Parameter
+217,position,int,"1-9, position of origin",Parameter
+218,shift,point,"(sx, sy",Parameter
+219,"parallelogram2(length=10, height=5, angle=45, position=1, shift=0,0)",,Return parallelogram polygon.,Function
+220,length,float,length of bounding box of parallelogram,Parameter
+221,height,float,height of parallelogram,Parameter
+222,angle,float,side angle,Parameter
+223,position,int,"1-9, position of origin",Parameter
+224,shift,point,"(sx, sy",Parameter
+225,"pie(radius=5, angle=310, N=20)",,Return arc polygon.,Function
+226,radius,float,radius of the pie,Parameter
+227,angle,float,angle of the pie,Parameter
+228,N,int,unspecified,Parameter
+229,"read_4positions(position=1, pts={}, shift=0,0)",,Return 4 corner points based on position.,Function
+230,position,int,position indicator,Parameter
+231,pts,dict,unspecified,Parameter
+232,shift,point,"(sx, sy",Parameter
+233,"rectangle(length=10, height=5, position=1, shift=0,0)",,Return rectangle polygon.,Function
+234,length,float,length of the rectangle,Parameter
+235,height,float,height of the rectangle,Parameter
+236,position,int,"1-9, position of origin",Parameter
+237,shift,point,"(sx, sy",Parameter
+238,"rhombus(length=10, angle=45, position=1, shift=0,0)",,Return rhombus polygon.,Function
+239,length,float,length of the rhombus,Parameter
+240,angle,float,angle of the rhombus,Parameter
+241,position,int,"1-9, position of origin",Parameter
+242,shift,point,"(sx, sy",Parameter
+243,"ring(radius=5, width=2, grow=0, N=20)",,Return ring polygon.,Function
+244,radius,float,radius of the ring,Parameter
+245,width,float,width of the ring,Parameter
+246,grow,int,growth factor,Parameter
+247,N,int,unspecified,Parameter
+248,"rounded_rect(length=10, height=7, position=1, shift=0,0, shrink=0.1, accuracy=0.05)",,Return rectangle polygon with rounded corners.,Function
+249,length,float,length of the rectangle,Parameter
+250,height,float,height of the rectangle,Parameter
+251,position,int,"1-9, position of origin",Parameter
+252,shift,point,"(sx, sy",Parameter
+253,shrink,float,shrink factor,Parameter
+254,accuracy,float,accuracy level,Parameter
+255,"square(length=10, position=1, shift=0,0)",,Return square polygon.,Function
+256,length,float,length of the square,Parameter
+257,position,int,"1-9, position of origin",Parameter
+258,shift,point,"(sx, sy",Parameter
+259,"taper(length=10, width1=2, width2=8, grow=0)",,Return taper polygon.,Function
+260,length,float,length of the taper,Parameter
+261,width1,float,starting width of the taper,Parameter
+262,width2,float,ending width of the taper,Parameter
+263,grow,int,growth factor,Parameter
+264,"tetragon(length=5, height=10, dx=4, x=10, position=1, shift=0,0)",,Return tetragon polygon.,Function
+265,length,float,length of the tetragon,Parameter
+266,height,float,height of the tetragon,Parameter
+267,dx,float,delta x coordinate,Parameter
+268,x,float,x coordinate,Parameter
+269,position,int,"1-9, position of origin",Parameter
+270,shift,point,"(sx, sy",Parameter
+271,"transform(points, center=0,0,0, scale=1.0, flipx=False, flipy=False, move=0,0,0)",,"Transform a polygon by translation, rotation, scaling and/or flipping.",Function
+272,points,list of (float,float,Parameter
+273,center,(float,"float, float",Parameter
+274,scale,float,scaling factor,Parameter
+275,flipx,bool,flip x coordinate,Parameter
+276,flipy,bool,flip y coordinate,Parameter
+277,move,(float,"float, float",Parameter
+278,"trapezoid(length=10, height=4, angle1=45, angle2=45, position=1, shift=0,0)",,Return trapezoid polygon.,Function
+279,length,float,length of the trapezoid,Parameter
+280,height,float,height of the trapezoid,Parameter
+281,angle1,float,first angle of the trapezoid,Parameter
+282,angle2,float,second angle of the trapezoid,Parameter
+283,position,int,"1-9, position of origin",Parameter
+284,shift,point,"(sx, sy",Parameter
+285,nazca.icons,,Module to create icons for building blocks from template functions.,Module
+286,"Tp_icon_MZI(bufx=None, bufy=None, layer=None, move=0,0,0)",,Template for functions to draw MZI icons.,Function
+287,layer,unknown,(layer to draw the icon in),Parameter
+288,"Tp_icon_Yjunction(bufx=None, bufy=None, layer=None, move=0,0,0)",,Template for functions to draw Y-junction icons.,Function
+289,layer,unknown,(layer to draw the icon in),Parameter
+290,"Tp_icon_circ_pad(bufx=None, bufy=None, layer=None, move=0,0,0)",,Template to draw circular pad icons.,Function
+291,"TP_icon_diode(layer=None, move=0,0,0)",,Template for functions to draw photo-diode icons.,Function
+292,layer,unknown,(layer to draw the icon in),Parameter
+293,"Tp_icon_diode_gsg(layer=None, move=0,0,0)",,Template to draw GSG diode icons.,Function
+294,layer,unknown,(layer to draw the icon in),Parameter
+295,"Tp_icon_directional_coupler(bufx=None, bufy=None, layer1=None, layer2=None, move=0,0,0)",,Template for functions to draw directional coupler icons.,Function
+296,layer1,unknown,(layer-1 to draw the icon in),Parameter
+297,layer2,unknown,(layer-2 to draw the icon in),Parameter
+298,"Tp_icon_grating(layer=None, move=0,0,0)",,Template to grating icons.,Function
+299,layer,unknown,(layer to draw the icon in),Parameter
+300,"Tp_icon_mir(Nin=2, bufx=None, bufy=None, layer=None, move=0,0,0)",,Template to draw icons for a N-port MIR shape.,Function
+301,Nin,int,number of input guides,Parameter
+302,Nout,int,number of output guides,Parameter
+303,layer,int | tuple,layer to draw icon in,Parameter
+304,"TP_icon_mmi(Nin=2, Nout=2, bufx=None, bufy=None, layer=None, move=0,0,0)",,Template to draw icons for a NxM MMI shape.,Function
+305,Nin,int,number of input guides,Parameter
+306,Nout,int,number of output guides,Parameter
+307,layer,int | tuple,layer to draw icon in,Parameter
+308,"TP_icon_rounded_pad(bufx=None, bufy=None, layer=None, move=0,0,0)",,Template to draw rounded pad icons.,Function
+309,"Tp_icon_sSC(layer=None, move=0,0,0)",,Template to draw spot-size convertor icons.,Function
+310,layer,unknown,(layer to draw the icon in),Parameter
+311,"Tp_icon_strt(bufx=0, bufy=0, layer=None, move=0,0,0)",,Template to draw straight waveguide icons.,Function
+312,"Tp_xsection_transition(layer1=None, layer2=None, move=0,0,0)",,Template to draw waveguide transition icons.,Function
+313,"calc_buf(length, width, bufx=None, bufy=None)",,Calculate icon size and buffer between the icon and the BB edge.,Function
+314,length,float,bb-length in the x-direction,Parameter
+315,width,float,bb-width in the y-direction,Parameter
+316,bufx,float,space between the icon and the bb-edge in the x-direction. Default = None,Parameter
+317,bufy,float,space between the icon and the bb-edge in the y-direction. Default = None,Parameter
+318,"icon_strt(length, width, layer, bufx=None, bufy=None)",,,Function
+319,"Xsection_transition(length, width, layer1, layer2, move=0,0,0)",,Create an icon for an xs transition.,Function
+320,nazca.interconnects module,,Nazca module for interconnecting guides.,Module
+321,"Interconnect(radius=None, width=None, angle=90, xs=None, layer=None, adapt_width=False, adapt_xs=False, instantiate=False, pinstyle=None, offset=None, varname=None, doc='', PCB=False, modes=None)",,Interconnect class for drawing waveguides and metal lines.,Class
+322,,,"Create two Interconnect objects, each for a different kind of waveguide.",Example
+323,,,Create and place a bend.,Example
+324,,,Create and place a bend-straight-bend guide to connect two specific points.,Example
+325,,,Create and place a cobra waveguide to connect two specific points.,Example
+326,,,Create and place a parabolic taper.,Example
+327,,,Rotate to angle 125 degree w.r.t. 'org' after a straight guide of 100 um.,Example
+328,,,Create and place a sbend waveguide.,Example
+329,,,Create and place a sbend to connect two specific points.,Example
+330,,,Create and place a sinebend waveguide.,Example
+331,,,Create and place a straight waveguide.,Example
+332,,,Create and place a straight-bend-straight guide to connect two specific points.,Example
+333,,,Create and place a straight guide between points.,Example
+334,,,Create and place a linear taper.,Example
+335,,,Create and place a taper to connect two specific points.,Example
+336,,,Create and place a ubend to connect two specific points.,Example
+337,nazca.logging,,Set up logging to stdout or a file of the output from Nazca. Logging is based on the standard Python logging concepts.,Module
+338,"logfile(name='nazca.log', level='INFO', formatter=None, stdout=True, create=False)",,Create a file for logging run output.,Function
+339,name,str,filename of the logfile. If the name does not end with '.log' it will be added automatically.,Parameter
+340,level,str,minimum log level (case insensitive,Parameter
+341,formatter,str,"format string, if None a default formatter will be used",Parameter
+342,stdout,bool,set False to switch off a copy of the log to stdout (default=True,Parameter
+343,create,bool,create an empty file (usage not clear in provided context,Parameter
+344,"newlogfile(name='nazca.log', level='INFO', formatter=None, stdout=True)",,,Function
+345,name,str,filename of the logfile. If the name does not end with '.log' it will be added automatically.,Parameter
+346,level,str,minimum log level (case insensitive,Parameter
+347,formatter,str,"format string, if None a default formatter will be used",Parameter
+348,stdout,bool,set False to switch off a copy of the log to stdout (default=True,Parameter
+349,nolog2stdout(),,Switch off the logger's stdout stream.,Function
+350,"Summary(filename='', plot=True)",,Summarize errors and warnings in the logfile.,Function
+351,filename,str,"logfile, default the main logger.",Parameter
+352,plot,bool,"show warnings + errors in a bar chart, default=True",Parameter
+353,,,Create a file handler with the filename of your Python file and switch off stream handler to standard output (stdout).,Example
+354,nazca.lowlevel,,Low-level Nazca routines.,Module
+355,GDSII_cell(pos=None),,Class for storing GDS cell content.,Class
+356,GDSII_element(records=None),,Class for GDS elements.,Class
+357,"GDSII_record(strm, pos=0)",,Class for storing a GDSii record in byte stream format.,Class
+358,"GDSII_stream(filename, cellmap=None, layermap=None, layermapmode=None, parse=True)",,"Class to read, modify and write a GDSII stream.",Class
+359,"get_cell_annotation(cell, convert=False)",,Yield the cell's annotations one by one.,Function
+360,cell,type: str,description: GDS cell name,Parameter
+361,convert,type: bool,description: default convert=False,Parameter
+362,"get_cell_polygon(cell, convert=False)",,Yield the cell's polygons one by one.,Function
+363,cell,type: str,description: GDS cell name,Parameter
+364,convert,type: bool,description: convert polygon's values to float (default = False,Parameter
+365,"get_cell_polyline(cell, convert=False)",,Yield the cell's polylines one by one.,Function
+366,cell,type: str,description: GDS cell name,Parameter
+367,convert,type: bool,description: convert polyline's values to float (default = False,Parameter
+368,nazca.mask_elements,,This module defines mask elements such as straight and bend waveguides via template functions. Functions in mask_elements work with closures on nested functions.,Module
+369,"Tp_arc(radius=10, width=1.0, angle=90, xs=None, layer=None, offset=None, name=None, modes=None)",,Template for creating a parametrized circular arc waveguide function.,Function
+370,radius,unknown,"float, radius at the center line of the arc in um.",Parameter
+371,width,unknown,"float, width of the arc in um.",Parameter
+372,angle,unknown,"float, angle of arc in degree (default=90).",Parameter
+373,xs,unknown,"str, xsection of taper",Parameter
+374,layer,unknown,"int | str, layer number or layer name",Parameter
+375,offset,unknown,"float | function, positive offset reduces radius. The offset can be a function F(width, radius) that returns a float",Parameter
+376,modes,unknown,"list, list of integers, containing the labels of netlist modes",Parameter
+377,"Tp_arc2(radius=10, width=1.0, angle=90, xs=None, layer=None, offset=None, name=None)",,Template for creating a parametrized angled arc waveguide function composed of straight sections.,Function
+378,radius,unknown,"float, radius at the center line of the arc in um.",Parameter
+379,width,unknown,"float, width of the arc in um.",Parameter
+380,angle,unknown,"float, angle of arc in degree (default=90).",Parameter
+381,xs,unknown,"str, xsection of taper",Parameter
+382,layer,unknown,"int | str, layer number or layer name",Parameter
+383,offset,unknown,"float | function, positive offset reduces radius. The offset can be a function F(width, radius) that returns a float",Parameter
+384,"Tp_cobra(xya=(100,100,10), width1=1.0, width2=1.0, radius1=0, radius2=0, offset1=None, offset2=None, xs=None, layer=None, name=None)",,Template for creating a parametrized cobra waveguide function.,Function
+385,xya,unknown,"point, point to connect to from (0,0,0)",Parameter
+386,width1,unknown,"float, width of waveguide",Parameter
+387,width2,unknown,"float, width of waveguide at end",Parameter
+388,radius1,unknown,"float, radius at start (0 is no curvature)",Parameter
+389,radius2,unknown,"float, radius at end (0 is no curvature)",Parameter
+390,offset1,unknown,"float | function, positive offset reduces radius",Parameter
+391,offset2,unknown,"float | function, positive offset reduces radius",Parameter
+392,xs,unknown,"str, xsection of waveguide",Parameter
+393,layer,unknown,"str | tuple | int, layer number or layer name",Parameter
+394,"Tp_euler(width1=1.0, width2=1.0, radius=50, angle=90, xs=None, layer=None, name='euler', modes=None)",,Template for creating an Euler bend.,Function
+395,width1,unknown,"float, begin width",Parameter
+396,width2,unknown,"float, end width",Parameter
+397,radius,unknown,"float, end radius for calibration",Parameter
+398,angle,unknown,"float, end angle for calibration",Parameter
+399,xs,unknown,"str, xsection name",Parameter
+400,layer,unknown,"str | tuple | int, mask layer",Parameter
+401,name,unknown,"str, element name (default='euler')",Parameter
+402,"Tp_ptaper(length=100, width1=1.0, width2=3.0, xs=None, layer=None, name=None, modes=None)",,Template for creating a parametrized parabolic taper function.,Function
+403,length,unknown,"float, length of the taper",Parameter
+404,width1,unknown,"float, width at start",Parameter
+405,width2,unknown,"float, width at end",Parameter
+406,xs,unknown,"str, xsection of taper",Parameter
+407,layer,unknown,"int | str, layer number or layer name",Parameter
+408,"TP_sinecurve(width=1.0, distance=200, offset=20, xs=None, layer=None, name=None)",,Template for creating parametrized sine curve waveguide function.,Function
+409,width,unknown,"float, width of the interconnect in um",Parameter
+410,xs,unknown,"str, xsection of sinebend",Parameter
+411,distance,unknown,"float, total forward length of the sinebend in um",Parameter
+412,offset,unknown,"float, lateral offset of the sinebend in um",Parameter
+413,layer,unknown,"int | str, layer number or layer name",Parameter
+414,"Tp_straight(length=10, width=1.0, xs=None, layer=None, edge1=None, edge2=None, edgepoints=50, name=None, modes=None)",,Template for creating parametrized straight waveguide function.,Function
+415,length,unknown,"float, length of waveguide",Parameter
+416,width,unknown,"float, width of waveguide",Parameter
+417,xs,unknown,"str, xsection of taper",Parameter
+418,layer,unknown,"int | str, layer number or layer name",Parameter
+419,edge1,unknown,"function, optional function F(t) describing edge 1 of the waveguide",Parameter
+420,edge2,unknown,"function, optional function G(t) describing edge 2 of the waveguide",Parameter
+421,edgepoints,unknown,"int, number of edge points per edge if the edge is set (default=50)",Parameter
+422,modes,unknown,"list, list of integers, containing the labels of netlist modes",Parameter
+423,"Tp_taper(length=100, width1=2, width2=3, shift=0, xs=None, layer=None, name=None, modes=None)",,Template for creating a parametrized linear taper function.,Function
+424,length,unknown,"float, length of the taper",Parameter
+425,width1,unknown,"float, width at start",Parameter
+426,width2,unknown,"float, width at end",Parameter
+427,shift,unknown,"float, lateral shift at taper end resulting in a skew taper",Parameter
+428,xs,unknown,"str, xsection of taper",Parameter
+429,layer,unknown,"int | str, layer number or layer name",Parameter
+430,"Tp_viper(x, y, w, width1=None, width2=None, xs=None, layer=None, N=200, epsilon=1e-06, name='viper', params={}, angle=None, angleo=None, **kwargs)",,Template for a specific Viper implementation.,Function
+431,x,unknown,"function, function in at least t, t in [0,1]",Parameter
+432,y,unknown,"function, function in at least t, t in [0,1]",Parameter
+433,w,unknown,"function, function in at least t, t in [0,1]",Parameter
+434,width1,unknown,"float, begin width",Parameter
+435,width2,unknown,"float, end width",Parameter
+436,xs,unknown,"str, xsection name",Parameter
+437,layer,unknown,"str | tuple | int, mask layer",Parameter
+438,name,unknown,"str, element name (default='viper')",Parameter
+439,N,unknown,"int, number of polygon points (default=200)",Parameter
+440,epsilon,unknown,"float, infinitesimal step size to calculate the begin and end angle",Parameter
+441,anglei,unknown,"float, set explicit angle of the input facet",Parameter
+442,angleo,unknown,"float, set explicit angle of the output facet",Parameter
+443,**kwargs,unknown,free parameters,Parameter
+444,"bend(radius=10, width=1.0, angle=90, xs=None, layer=None, offset=None, name=None)",,Create a circular arc element.,Function
+445,radius,unknown,"float, radius at the center line of the arc in um.",Parameter
+446,width,unknown,"float, width of the arc in um.",Parameter
+447,angle,unknown,"float, angle of arc in degree (default=90).",Parameter
+448,xs,unknown,"str, xsection of taper",Parameter
+449,layer,unknown,"int | str, layer number or layer name",Parameter
+450,offset,unknown,"float | function, positive offset reduces radius. The offset can be a function F(width, radius) that returns a float",Parameter
+451,"Cobra(xya=(100,100,10), width1=1.0, width2=1.0, radius1=0, radius2=0, offset1=None, offset2=None,xs=None, layer=None, name=None)",,Create a parametric waveguide element.,Function
+452,xya,unknown,"point, point to connect to from (0,0,0)",Parameter
+453,width1,unknown,"float, width of waveguide",Parameter
+454,xs,unknown,"str, xsection of waveguide",Parameter
+455,layer,unknown,"int | str, layer number or layer name",Parameter
+456,"euler(width1=1.0, width2=1.0, radius=None, angle=90, xs=None, layer=None, name='euler')",,Create an Euler bend element.,Function
+457,width1,unknown,"float, begin width",Parameter
+458,width2,unknown,"float, end width",Parameter
+459,radius,unknown,"float, optional to overrule the end-radius calibration value.",Parameter
+460,angle,unknown,"float, end angle",Parameter
+461,xs,unknown,"str, xsection name",Parameter
+462,layer,unknown,"str | tuple | int, mask layer",Parameter
+463,name,unknown,"str, optional new element name",Parameter
+464,handle_missing_XS(xs),,Handle missing xsections or xsection missing mask_layers.,Function
+465,xs,unknown,"str, xsection name",Parameter
+466,"layeriter(xs=None, layer=None)",,Generator yielding all layers in a xsection.,Function
+467,xs,unknown,"str, xsection name",Parameter
+468,layer,unknown,"int, layer number",Parameter
+469,"ptaper(length=100, width1=1.0, width2=3.0, xs=None, layer=None, name=None)",,Create a parabolic taper element.,Function
+470,length,unknown,"float, length of taper",Parameter
+471,width1,unknown,"float, start width of taper",Parameter
+472,width2,unknown,"float, end width of taper",Parameter
+473,xs,unknown,"str, xsection of taper",Parameter
+474,layer,unknown,"int | str, layer number or layer name",Parameter
+475,"Sinebend(width=1.0, distance=200, offset=20, xs=None, layer=None, name=None)",,Create a (raised) sine bend waveguide element.,Function
+476,width,unknown,"float, width of the interconnect in um",Parameter
+477,pin,unknown,"Node, optional Node for modeling info",Parameter
+478,xs,unknown,"str, xsection of sinebend",Parameter
+479,offset,unknown,"float, lateral offset of the sinebend in um",Parameter
+480,distance,unknown,"float, total forward length of the sinebend in um",Parameter
+481,layer,unknown,"int | str, layer number or layer name",Parameter
+482,"Strt(length=10, width=1.0, xs=None, layer=None, edge1=None, edge2=None, edgepoints=50, name=None, gridpatch=0)",,Create a straight waveguide element.,Function
+483,length,unknown,"float, length of waveguide",Parameter
+484,width,unknown,"float, width of waveguide",Parameter
+485,xs,unknown,"str, xsection of waveguide",Parameter
+486,layer,unknown,"int | str, layer number or layer name",Parameter
+487,edge1,unknown,"function, optional function F(t) describing edge 1 of the waveguide",Parameter
+488,edge2,unknown,"function, optional function G(t) describing edge 2 of the waveguide",Parameter
+489,edgepoints,unknown,"int, number of edge points per edge if edge 1 is set (default=50)",Parameter
+490,"taper(length=100, width1=2, width2=3, shift=0, xs=None, layer=None, name=None)",,Create a taper element.,Function
+491,length,unknown,"float, length of taper",Parameter
+492,width1,unknown,"float, start width of taper",Parameter
+493,width2,unknown,"float, end width of taper",Parameter
+494,shift,unknown,"float, lateral shift at taper end resulting in a skew taper",Parameter
+495,xs,unknown,"str, xsection of taper",Parameter
+496,layer,unknown,"int | str, layer number or layer name",Parameter
+497,,,Example of predefined waveguide functions in the module.,Example
+498,nazca.mask_layers,,"This module defines mask layers, xsections, and their relationships within Nazca Design.",Module
+499,"add_XSdict(name, name_foundry=None, origin='add_xsection', stub=None, description='')",,Create a new Xsection object named <name>.,Function
+500,name,str,xsection name,Parameter
+501,name_foundry,str,optional xsection name used by the foundry,Parameter
+502,origin,str,source or creator of the layer,Parameter
+503,stub,unknown,(xsection name to be used for the stub of this xsection),Parameter
+504,"add_layer(name=None, layer=None, tech=None, accuracy=None, fab_name=None, origin=None, remark=None, description='', overwrite=False, frame_color=None, fill_color=None, frame_brightness=None, fill_brightness=None, dither_pattern=None, valid=None, visible=None, transparent=None, width=None, marked=None, animation=None, alpha=None, unknown=False, merge=True)",,Create a new mask layer.,Function
+505,name,str,layer name,Parameter
+506,layer,int | tuple,"layer number or (layer, datatype",Parameter
+507,tech,str,technology ID,Parameter
+508,accuracy,float,mask resolution of the layer in um,Parameter
+509,fab_name,str,optional name used by the foundry for this layer,Parameter
+510,origin,str,who created the layer,Parameter
+511,remark,str,extra info for the layer,Parameter
+512,overwrite,bool,overwrite an existing layer if True,Parameter
+513,unknown,bool,True if redirected from get_layer,Parameter
+514,merge,bool,if True merge xsection and layers,Parameter
+515,"add_layer2xsection(xsection='name', layer=None, growx=None, leftedge=None, rightedge=None, growy=None, accuracy=None, fab_name=None, origin=None, overwrite=False, polyline=False, remark=None)",,Add a layer to the Xsection object with the given name.,Function
+516,xsection,str,xsection name for use in Nazca,Parameter
+517,layer,int | tuple,"layer number or (layer, datatype",Parameter
+518,growx,float,growth in the x-direction of the polygon,Parameter
+519,leftedge,float | tuple,left edge description,Parameter
+520,rightedge,float | tuple,right edge description,Parameter
+521,"add_xsection_stub(xsection, stub)",,Assign a stub xsection to a xsection.,Function
+522,xsection,str,xsection name,Parameter
+523,stub,str,stub name,Parameter
+524,clear_all(),,Clear Nazca layer and xsection structures.,Function
+525,clear_layers(),,Clear all objects with layer information.,Function
+526,clear_xsection_layers(),,Drop all rows from layers and xsection tables.,Function
+527,clear_xsections(),,Clear xsection dict but keep layer info.,Function
+528,"get_layer(layer, aslist=False)",,Get the layer ID for a specific layer reference.,Function
+529,layer,str | tuple | int,"layer reference by name, (layer, datatype",Parameter
+530,aslist,bool,return layer IDs as a list which may include multiple entries,Parameter
+531,get_layer_tuple(layer),,"Get layer information as tuple components (layer, datatype, technology).",Function
+532,get_layers(),,Get a predefined selection of columns from the layer_table DataFrame.,Function
+533,get_parameter(name),,Obsolete function for setting parameter value for a specific name.,Function
+534,get_Xsection(name),,Return the Xsection object corresponding to <name>.,Function
+535,name,str | Node,xsection name or a pin object,Parameter
+536,load_layercolors(filename),,Read colormap from a .csv Nazca color table file.,Function
+537,filename,str,filename,Parameter
+538,"load_layers(filename, tech=None, clear=False, autocolor=False)",,Load layer definitions from csv file into the Nazca layer table.,Function
+539,filename,str,name of layer definition file in csv format,Parameter
+540,tech,str,technology name,Parameter
+541,clear,bool,clear existing layers,Parameter
+542,autocolor,bool,create automated color settings per layer,Parameter
+543,"load_masklayers(layer_file=None, xsection_layer_file=None)",,Load layer and xsection files and merge them.,Function
+544,layer_file,str,layer file name in csv format,Parameter
+545,xsection_layer_file,str,xsection file name in csv format,Parameter
+546,"load_xsection_layer_map(filename, tech=None)",,Load the assignment of layers to xsections from a file.,Function
+547,filename,str,xsection file in csv format,Parameter
+548,tech,str,technology ID,Parameter
+549,load_Xsections(filename),,Load a list of xsections from a file with stub mapping.,Function
+550,filename,str,xsection map filename in csv format,Parameter
+551,merge_xsection_layers_with_layers(),,Create a dictionary containing tables of xsections joined with layers.,Function
+552,"parse_grow(edge, side, default)",,Parse growth parameter into a tuple.,Function
+553,Save_colormap(filename=None),,Save a colormap to a csv file.,Function
+554,filename,str,output filename,Parameter
+555,"Set_layercolor(layer=None, frame_color=None, fill_color=None, frame_brightness=None, fill_brightness=None, dither_pattern=None, valid=None, visible=None, transparent=None, width=None, marked=None, animation=None, alpha=None)",,Set layer color information.,Function
+556,layer,int | tuple | str,mask layer,Parameter
+557,frame_color,optional,frame color,Parameter
+558,fill_color,optional,fill color,Parameter
+559,frame_brightness,optional,frame brightness,Parameter
+560,fill_brightness,optional,fill brightness,Parameter
+561,dither_pattern,optional,dither pattern,Parameter
+562,valid,optional,valid indicator,Parameter
+563,visible,optional,visibility indicator,Parameter
+564,transparent,optional,transparency indicator,Parameter
+565,width,optional,width,Parameter
+566,marked,optional,marked indicator,Parameter
+567,animation,optional,animation indicator,Parameter
+568,alpha,optional,alpha value,Parameter
+569,"Set_plt_properties(figsize=14, cmap=None, N=32, alpha=0.3)",,Set the default colormap to use in Matplotlib output for mask layout.,Function
+570,figsize,float,size of the matplotlib figure,Parameter
+571,cmap,str,name of the colormap,Parameter
+572,N,int,number of colors in the map in case of a 'linearSegmentedColormap',Parameter
+573,alpha,float,transparency of the colormap,Parameter
+574,show_layercolors(),,Print the layer color table.,Function
+575,Show_layers(),,Print the layer table.,Function
+576,Show_mask_layers(),,Print mask_layers dictionary with layer export definitions to stdout.,Function
+577,Show_xsection_layer_map(),,Print the xsection_layer_map table to stdout.,Function
+578,Show_xsections(),,Print the xsections table.,Function
+579,nazca.pdk_template,,Module defining black box templates for PDK implementation.,Module
+580,nazca.pdk_template_bb,,Module defining black box templates for PDK implementation.,Module
+581,"Tp_BB1X1(length=100, width=50, pinwidth=None, name='BBname', groupname='"", xs=None, xsb=None, ashift=0, bshift=0, parameters=None)",,Template for a 1 input and 1 output Building Block.,Function
+582,length,int,Length of the block,Parameter
+583,width,int,Width of the block,Parameter
+584,pinwidth,Optional[int],Width of the pin,Parameter
+585,name,str,Name of the block,Parameter
+586,groupname,str,Group name of the block,Parameter
+587,xs,Optional,Unused parameter,Parameter
+588,xsb,Optional,Unused parameter,Parameter
+589,ashift,int,Shift for 'a' parameter,Parameter
+590,bshift,int,Shift for 'b' parameter,Parameter
+591,parameters,Optional,Additional parameters,Parameter
+592,"Tp_BB3ports(length=100, width=50, pinwidth=None, name='BBname', groupname='"", xs=None, xsb=None, ashift=0, bshift=0, cshiftx=0, cshifty=0, parameters=None)",,"Template Block with 3 ports: input, output, contact.",Function
+593,length,int,Length of the block,Parameter
+594,width,int,Width of the block,Parameter
+595,pinwidth,Optional[int],Width of the pin,Parameter
+596,name,str,Name of the block,Parameter
+597,groupname,str,Group name of the block,Parameter
+598,xs,Optional,Unused parameter,Parameter
+599,xsb,Optional,Unused parameter,Parameter
+600,ashift,int,Shift for 'a' parameter,Parameter
+601,bshift,int,Shift for 'b' parameter,Parameter
+602,cshiftx,int,Shift for 'c' parameter in x direction,Parameter
+603,cshifty,int,Shift for 'c' parameter in y direction,Parameter
+604,parameters,Optional,Additional parameters,Parameter
+605,"TP_BB4ports(length=100, width=50, pinwidth=None, name='BBname', groupname='"", xs=None, xsb=None, ashift=0, bshift=0, cshiftx=0, cshifty=0, parameters=None)",,"Template for a Block with 4 ports: input, output, 2x contacts.",Function
+606,length,int,Length of the block,Parameter
+607,width,int,Width of the block,Parameter
+608,pinwidth,Optional[int],Width of the pin,Parameter
+609,name,str,Name of the block,Parameter
+610,groupname,str,Group name of the block,Parameter
+611,xs,Optional,Unused parameter,Parameter
+612,xsb,Optional,Unused parameter,Parameter
+613,ashift,int,Shift for 'a' parameter,Parameter
+614,bshift,int,Shift for 'b' parameter,Parameter
+615,cshiftx,int,Shift for 'c' parameter in x direction,Parameter
+616,cshifty,int,Shift for 'c' parameter in y direction,Parameter
+617,parameters,Optional,Additional parameters,Parameter
+618,"Tp_CellBoundary(length=4600, height=4000, cleave=100, coatingW=' NO', coatingE='NO', name='cell_boundary', groupname=', xs=None)",,Template for a cell boundary.,Function
+619,length,int,Length of the cell,Parameter
+620,height,int,Height of the cell,Parameter
+621,cleave,int,Cleave dimension,Parameter
+622,coatingW,str,Coating on West side,Parameter
+623,coatingE,str,Coating on East side,Parameter
+624,name,str,Name of the boundary,Parameter
+625,groupname,str,Group name,Parameter
+626,xs,Optional,Unused parameter,Parameter
+627,"Tp_CellBoundary2(length=5000, height=5000, cleave=100, name='cell_boundary', groupname=', pitch=None, xs=None)",,Template for a cell boundary.,Function
+628,length,int,Length of the cell,Parameter
+629,height,int,Height of the cell,Parameter
+630,cleave,int,Cleave dimension,Parameter
+631,name,str,Name of the boundary,Parameter
+632,groupname,str,Group name,Parameter
+633,pitch,Optional,Unused parameter,Parameter
+634,xs,Optional,Unused parameter,Parameter
+635,"TP_CellID(width=200, length=200, ID=' xx', name='Cell_ID', groupname='', xs=None)",,Smart Photonics CellID.,Function
+636,width,int,Width of the ID,Parameter
+637,length,int,Length of the ID,Parameter
+638,ID,str,Identity string,Parameter
+639,name,str,Name of the ID,Parameter
+640,groupname,str,Group name,Parameter
+641,xs,Optional,Unused parameter,Parameter
+642,"Tp_IO(length=100, width=3.5, angle=-7, pinwidth=None, name='io', groupname='"", xs=None)",,Template trapezoidal IO.,Function
+643,length,int,Length of the IO,Parameter
+644,width,float,Width of the IO,Parameter
+645,angle,int,Angle of the trapezoid,Parameter
+646,pinwidth,Optional[float],Width of the pin,Parameter
+647,name,str,Name of the IO,Parameter
+648,groupname,str,Group name,Parameter
+649,xs,Optional,Unused parameter,Parameter
+650,"Tp_IO2(length=100, width=3.5, angle=7, pinwidth=None, name='io', groupname='"", xs=None)",,"Template trapezoidal IO, but flipped (XL).",Function
+651,length,int,Length of the IO,Parameter
+652,width,float,Width of the IO,Parameter
+653,angle,int,Angle of the trapezoid,Parameter
+654,pinwidth,Optional[float],Width of the pin,Parameter
+655,name,str,Name of the IO,Parameter
+656,groupname,str,Group name,Parameter
+657,xs,Optional,Unused parameter,Parameter
+658,"Tp_IOtrapezoid(length=100, width=3.5, angle=-7, pinwidth=None, name='io', groupname=', xs=None)",,Template trapezoidal IO.,Function
+659,length,int,Length of the IO,Parameter
+660,width,float,Width of the IO,Parameter
+661,angle,int,Angle of the trapezoid,Parameter
+662,pinwidth,Optional[float],Width of the pin,Parameter
+663,name,str,Name of the IO,Parameter
+664,groupname,str,Group name,Parameter
+665,xs,Optional,Unused parameter,Parameter
+666,"TP_Isolation(length=30, width=20, pinwidth=None, name='iso', groupname=', xs=None)",,Template for Isolation section in different xsection.,Function
+667,length,int,Length of the section,Parameter
+668,width,int,Width of the section,Parameter
+669,pinwidth,Optional[int],Width of the pin,Parameter
+670,name,str,Name of the isolation section,Parameter
+671,groupname,str,Group name,Parameter
+672,xs,Optional,Unused parameter,Parameter
+673,"Tp_XStransition(length=33, width=30, pinwidth=None, name='xs1_to_xs2', groupname=', xs=None, icon=None)",,Template for waveguide transitions between xsections.,Function
+674,length,int,Length of the transition,Parameter
+675,width,int,Width of the transition,Parameter
+676,pinwidth,Optional[int],Width of the pin,Parameter
+677,name,str,Name of the transition,Parameter
+678,groupname,str,Group name,Parameter
+679,xs,Optional,Unused parameter,Parameter
+680,icon,Optional,Icon of the transition,Parameter
+681,nazca.bb_util,,Module with a set of Building Block templates for facilitating PDK creation.,Module
+682,"Functional_group(name="""")",,Class to group building blocks syntactically together.,Class
+683,"add_pinshape(name, shape, overwrite=True)",,Add a pin shape to the pinshapes dict.,Function
+684,name,str,reference name of the shape,Parameter
+685,shape,list of (float,float,Parameter
+686,"add_pinstyle(name, styledict)",,Set a custom pin style for a technology.,Function
+687,name,str,pinstyle name,Parameter
+688,styledict,dict,pinstyle,Parameter
+689,"bb_fingerprint(cellcalls, save=False, filename='fingerprint.json', infolevel=0)",,Generate a dict with parameter list and pin list of a list of BBs.,Function
+690,cellcalls,dict,all the cells {function_call_str: cell_from_call},Parameter
+691,"bbox_layers_ignore(layers=None, reset=False)",,Set the layers that should be ignored in bbox calculations.,Function
+692,"cellname(cellname=None, length=0, width=None, align='lc', name_layer=None)",,Create the cellname as a text cell.,Function
+693,cellname,str,name of the cell,Parameter
+694,length,float,length available for the BB name in um,Parameter
+695,width,float,width,Parameter
+696,align,str,text alignment (default = 'lc',Parameter
+697,name_layer,str,name of the layer to be used for bbox name text with cellname,Parameter
+698,example_cell(),,Create a Nazca example cell.,Function
+699,"export_bb2png(cellcalls, path=', close=True, bbox_pins=True)",,Create png image for all cells in cellcalls.,Function
+700,cellcalls,dict | list of Cells,all the cells {function_call_str: cell_from_call} | list of Cells,Parameter
+701,close,bool,close cell immediately after drawing (default = True,Parameter
+702,path,str,path for saving png files,Parameter
+703,bbox_pins,bool,add pins to the bbox (default = True,Parameter
+704,get_Cell(name),,Get Cell object by providing cell name.,Function
+705,name,str,cell name,Parameter
+706,hashme(*params),,Decorator to not regenerate a building block (cell) based on the same parameters.,Function
+707,"image(name, layer=1, size=256, pixelsize=1, threshold=0.5, cellname=None, invert=False, align='cc', box_layer=None, box_buf=0)",,Read an image file and return a nazca cell with the image.,Function
+708,name,str,name of the image file,Parameter
+709,layer,int,layer number that the image will be written to (default 1,Parameter
+710,size,int,maximum bounding box size in pixels (default 256,Parameter
+711,pixelsize,float,pixel size in micron (default 1,Parameter
+712,threshold,float,black/white threshold (default 0.5,Parameter
+713,cellname,str,Nazca cell name (default image filename,Parameter
+714,invert,bool,flag to invert black & white (default False,Parameter
+715,align,str,two character string for image alignment (default 'cc',Parameter
+716,box_layer,str | int | tuple,layer reference to generate a rectangular box behind the text (default None,Parameter
+717,box_buf,float,extra buffer for the box_layer in um,Parameter
+718,"load_gdsBB(gdsfilename, cellname, pinfilename=None, newcellname=None, layermap=None, cellmap=None, flip=False, flop=False, scale=None, stubs=True, native=True, bbox=False, bboxbuf=0, hull=None, prefix='', suffix='_stubs', instantiate=None, flat=False, layermapmode=None)",,Load a gds cell and the corresponding pin info from file.,Function
+719,gdsfilename,str,gds filename to import from,Parameter
+720,cellname,str,cellname to import,Parameter
+721,pinfilename,str,optional name of csv file containing pin info for stubs,Parameter
+722,newcellname,str,new cell name,Parameter
+723,layermap,dict,mapping of layer {number_in: number_out},Parameter
+724,cellmap,dict,mapping of cellnames {cellname_in: cellname_out},Parameter
+725,flip,bool,mirror the gds without changing pin direction (default = False,Parameter
+726,flop,bool,mirror the gds with reversing pin direction (default = False,Parameter
+727,scale,float,scaling factor (default = 1.0,Parameter
+728,stubs,bool,place stubs in the cell (default = True,Parameter
+729,native,bool,load gds into a Nazca native format (default = True,Parameter
+730,bbox,bool,add a bounding box if True (default = False,Parameter
+731,bboxbuf,float,add a buffer layer around the structure and the bounding box,Parameter
+732,prefix,str,prefix to add to the cell name to avoid cell name clashes,Parameter
+733,suffix,str,suffix to indicate it is cell with stubs added (default = '_stubs',Parameter
+734,instantiate,bool,instantiate the returned cell,Parameter
+735,"make_pincell(layer=None, shape=None, size=None, style=None)",,Create a cell to indicate a pin position.,Function
+736,layer,float,layer number to place the pin symbol/shape,Parameter
+737,shape,str,name (dict key,Parameter
+738,size,float,scaling factor of the pin symbol/shape,Parameter
+739,style,str,style of the pin,Parameter
+740,"nazca_logo(layers={'bird': 3, 'box': 2, 'ring': 1}, cellname='nazca_logo', scale=1.0, bbox=True)",,Return the Nazca logo as a cell.,Function
+741,layers,dict,"gds layers of the logo (default = {'ring':1, 'box':2, 'bird':3}",Parameter
+742,cellname,str,cell name (default = 'nazca_logo',Parameter
+743,scale,float,scaling factor (default = 1.0,Parameter
+744,"put_boundingbox(pinname, length, width, raisepins=True, outline=True, align='lc', name=True, params=True, move=(0,0,0), name_layer=None)",,Create bounding box (bbox) cell inside the active cell.,Function
+745,pinname,str,pin to place bbox on (center left of bbox,Parameter
+746,length,float,length of the bbox,Parameter
+747,width,float,width of the bbox,Parameter
+748,raisepins,bool,raise bbox pins into active cell (default = True,Parameter
+749,outline,bool,draw bbox outline (default = True,Parameter
+750,align,str,align the bbox on the specified bbox pin <pinname> (default = 'lc',Parameter
+751,name,bool,display the (active,Parameter
+752,params,bool,add parameter annotation to the bbox,Parameter
+753,move,tuple,"move the bbox placement by (float, float, float",Parameter
+754,name_layer,str,name of the layer to be used for bbox name,Parameter
+755,"put_parameters(parameters=None, pin=None)",,Put a parameter list as annotation in a building block.,Function
+756,parameters,dict,{parameter_name: value},Parameter
+757,"put_stub(pinname=None, length=None, shape='box', pinshape=None, pinsize=None, pinlayer=None, pinshow=True, annotation_layer=None, pinstyle=None)",,Add a xsection stub to one or more pins.,Function
+758,pinname,str | list of str | None,name(s,Parameter
+759,length,float,length of the stub (thickness into cell,Parameter
+760,shape,string | cell,shape of the stub 'box' | 'circle' (default = 'box',Parameter
+761,pinshape,string,pin shape used in the stub,Parameter
+762,pinsize,float,scaling factor of the pin shape (default = 1,Parameter
+763,pinlayer,str | int | (int,int,Parameter
+764,annotation_layer,str | int | (int,int,Parameter
+765,pinstyle,str,pin style used,Parameter
+766,pinshow,bool,set the pin show attribute (default = True,Parameter
+767,rangecheck(allowed_values),,Check if parameter values are in range.,Function
+768,allowed_values,dict,"{param_name: (low, param_name, high",Parameter
+769,set_default_pinstyle(stylename),,Provide the name to use for the standard pinstyle.,Function
+770,stylename,str,pinstyle name,Parameter
+771,"set_pinstyle(name, styledict)",,Set a custom pin style for a technology.,Function
+772,name,str,pinstyle name,Parameter
+773,styledict,dict,pinstyle dictionary,Parameter
+774,string_to_parameters(string),,Convert a string to a parameter dictionary.,Function
+775,string,str,parameters,Parameter
+776,"Stubname(xs, width, thick, stubshape=None, pinshape=None, pinsize=None, pinlayer=None)",,Construct a stub name.,Function
+777,xs,str,x-section,Parameter
+778,width,float,stub width,Parameter
+779,thick,float,thickness of stub into cell,Parameter
+780,"validate_black_to_white_mapping(black2whiteMap, allBBcells, infolevel=0)",,Validate if all white and black boxes are mapped.,Function
+781,black2whiteMap,dict,{blackbox-basename: whitebox-function},Parameter
+782,allBBcells,list of Cell,all black box cells,Parameter
+783,infolevel,int,amount of feedback to stdout (default = 0,Parameter
+784,"Validation_style(on=True, stub_layer=None, pin_style=None, validation_layermapmode='none', validation_layermap=None)",,Set layers and pinstyle and layermap for BB validation stubs.,Function
+785,on,bool,"default=True, turn on validation style",Parameter
+786,stub_layer,int,"(int, int",Parameter
+787,pin_style,dict,optional pinstyle dict for the arrow and stub,Parameter
+788,validation_layermapmode,str,validation layermap mode,Parameter
+789,validation_layermap,dict,{in_layer: out_layer},Parameter
+790,,,Usage of the hashme decorator,Example
+791,,,Usage of hashme with adding keyword values to the cellname,Example
+792,,,Example of using the 'rangecheck',Example
+793,,,Load a logo in a cell and put and/or export it to gds,Example
+794,,,Alternative way to load a logo and export to gds,Example
+795,nazca.pdk_template_dbr,,Module defining black box templates for PDK implementation.,Module
+796,"Tp_DBR(length=250, width=15, pinwidth=None, xs=None, name='dbr', groupname='', pitch=0.237, duty_cycle=0.5, icon=None)",,Template for DBR building block. This DBR has an option to set the duty cycle as a free parameter.,Function
+797,length,unknown,"['float', 'Length of the DBR']",Parameter
+798,width,unknown,"['float', 'Width of the DBR']",Parameter
+799,pitch,unknown,"['float', 'Pitch of the DBR']",Parameter
+800,duty_cycle,unknown,"['float', 'Duty cycle of the DBR']",Parameter
+801,name,unknown,"['str', 'Name of the DBR']",Parameter
+802,xs,unknown,"['str', 'Extra settings for the DBR']",Parameter
+803,"Tp_DBR2(length=250, width=15, name='dbr', groupname='', pinwidth=None, xs=None, pitch=0.237, metal=True, icon=None)",,Extended template for DBR building block.,Function
+804,length,unknown,"['float', 'Length of the DBR2']",Parameter
+805,width,unknown,"['float', 'Width of the DBR2']",Parameter
+806,pinwidth,unknown,"['dict', 'Pin width settings for the DBR2']",Parameter
+807,pitch,unknown,"['float', 'Pitch of the DBR2']",Parameter
+808,name,unknown,"['float', 'Name of the DBR2']",Parameter
+809,cshifty,unknown,"['float', 'Y-coordinate shift of the DBR2']",Parameter
+810,metal,unknown,"['int', 'Metal parameter for the DBR2']",Parameter
+811,pad,unknown,"['int', 'Pad parameter for the DBR2']",Parameter
+812,DCmetalPad,unknown,"['int', 'DC metal pad parameter for the DBR2']",Parameter
+813,DCmetalLine,unknown,"['int', 'DC metal line parameter for the DBR2']",Parameter
+814,xs,unknown,"['dict', 'Extra settings for the DBR2']",Parameter
+815,xs_bb,unknown,"['str', 'XS BB settings for the DBR2']",Parameter
+816,xs_metal,unknown,"['str', 'XS metal settings for the DBR2']",Parameter
+817,nazca.pdk_template_eopm,,Module defining black box templates for PDK implementation.,Module
+818,"TP_EOPM_DC(length=100, width=50, name='BBname', groupname='', pinwidth=None, xs=None, contacts=3, pads=True, icon=None)",,"Template for a EOPM_DC. The EOMP has 1 input, 1 output, and 3 contact ports. Metal pads to contact ports are optional.",Function
+819,length,int,Length of the EOPM_DC,Parameter
+820,width,int,Width of the EOPM_DC,Parameter
+821,name,str,Name of the EOPM_DC,Parameter
+822,groupname,str,Group name of the EOPM_DC,Parameter
+823,pinwidth,int or None,Width of the pins,Parameter
+824,xs,int or None,X-coordinate spacing,Parameter
+825,contacts,int,"Number of contact ports, default is 3",Parameter
+826,pads,bool,"Whether to add metal pads, default is True",Parameter
+827,icon,various,Icon representation,Parameter
+828,"TP_EOPM_RF(length=100, width=50, rfpitch=10, pinwidth=None, xs=None, name='BBname', groupname='', dx_metal=0, dy_metal=0, pads=False, padangle1=-70, padangle2=70, RFpadType=None, bend_gsg_function=None, bend_gsg_params=None, icon=None)",,"Template for a EOPM_RF. Has optical input, output, and 2 GSG ports. Option to add RF GSG pads to GSG ports.",Function
+829,length,int,Length of the EOPM_RF,Parameter
+830,width,int,Width of the EOPM_RF,Parameter
+831,rfpitch,int,Pitch of RF signals,Parameter
+832,pinwidth,int or None,Width of the pins,Parameter
+833,xs,int or None,X-coordinate spacing,Parameter
+834,name,str,Name of the EOPM_RF,Parameter
+835,groupname,str,Group name of the EOPM_RF,Parameter
+836,dx_metal,int,X offset for metal pads,Parameter
+837,dy_metal,int,Y offset for metal pads,Parameter
+838,pads,bool,"Whether to add RF GSG pads, default is False",Parameter
+839,padangle1,int,"Angle for the first pad, default is -70",Parameter
+840,padangle2,int,"Angle for the second pad, default is 70",Parameter
+841,RFpadType,various,Type of RF pad,Parameter
+842,bend_gsg_function,function,Function for GSG bend,Parameter
+843,bend_gsg_params,dict,Parameters for the GSG bend function,Parameter
+844,icon,various,Icon representation,Parameter
+845,nazca.pdk_template_gsg,,Module defining black box templates for PDK implementation.,Module
+846,"Tp_RFbendGSG(radius=50, angle=30, width_sig=10, width_gnd=10, gap=10, wext_bg=8)",,Template for GSG RF bend.,Function
+847,radius,int,radius of the bend,Parameter
+848,angle,int,angle of the bend,Parameter
+849,width_sig,int,width of the signal line,Parameter
+850,width_gnd,int,width of the ground line,Parameter
+851,gap,int,gap between signal and ground,Parameter
+852,wext_bg,int,background width extension,Parameter
+853,"Tp_RFlineGSG(length=100, width_sig=10, width_gnd=10, gap=10, wext_bg=None, pinwidth=None, name='line_gsg', groupname='', xs=None, xs_bb=None, xs_bg=None, xs_bg_width=None)",,Template for RF line GSG.,Function
+854,length,int,length of the line,Parameter
+855,width_sig,int,width of the signal line,Parameter
+856,width_gnd,int,width of the ground line,Parameter
+857,gap,int,gap between signal and ground,Parameter
+858,wext_bg,int,background width extension,Parameter
+859,pinwidth,int,pin width,Parameter
+860,name,str,name of the template,Parameter
+861,groupname,str,group name,Parameter
+862,xs,None,placeholder parameter,Parameter
+863,xs_bb,None,placeholder parameter,Parameter
+864,xs_bg,None,placeholder parameter,Parameter
+865,xs_bg_width,None,placeholder parameter,Parameter
+866,"Tp_RFpadGSG(width_sig=10, width_gnd1=10, width_gnd2=None, gap1=10, gap2=62.5, height_tap=40, length_pad=75, width_pad_sig=45, width_pad_gnd=45, pinwidth=None, name='pad_gsg', groupname='', xs=None, layer=None)",,Template for GSG RF pad cell.,Function
+867,width_sig,int,width of the signal line,Parameter
+868,width_gnd1,int,width of the first ground line,Parameter
+869,width_gnd2,None,width of the second ground line,Parameter
+870,gap1,int,first gap between signal and ground,Parameter
+871,gap2,float,second gap between signal and ground,Parameter
+872,height_tap,int,height of the tap,Parameter
+873,length_pad,int,length of the pad,Parameter
+874,width_pad_sig,int,width of the signal pad,Parameter
+875,width_pad_gnd,int,width of the ground pad,Parameter
+876,pinwidth,None,pin width,Parameter
+877,name,str,name of the template,Parameter
+878,groupname,str,group name,Parameter
+879,xs,None,placeholder parameter,Parameter
+880,layer,None,layer information,Parameter
+881,nazca.pdk_template_mmi,,Module defining black box templates for PDK implementation.,Module
+882,"Tp_MIR1p(length, width, pinwidth=None, name='mirlp', groupname=None, icon=None, version=None, store_pins=False)",,Template for MMI1x2 in different xsections.,Function
+883,length,float,The length of the MMI,Parameter
+884,width,float,The width of the MMI,Parameter
+885,pinwidth,optional,The width of the pins,Parameter
+886,name,str,The name of the template,Parameter
+887,groupname,optional,The name of the group,Parameter
+888,icon,optional,The icon for the template,Parameter
+889,version,optional,The version of the template,Parameter
+890,store_pins,bool,Whether to store the pins,Parameter
+891,"Tp_MIR2p(length=70.6, width=39, pinwidth=None, offset=1.5, name='mirlp', groupname=None, icon=None, version=None, store_pins=False)",,Template for MMI1x2 in different xsections.,Function
+892,length,float,The length of the MMI,Parameter
+893,width,float,The width of the MMI,Parameter
+894,pinwidth,optional,The width of the pins,Parameter
+895,offset,float,The offset value,Parameter
+896,name,str,The name of the template,Parameter
+897,groupname,optional,The name of the group,Parameter
+898,icon,optional,The icon for the template,Parameter
+899,version,optional,The version of the template,Parameter
+900,store_pins,bool,Whether to store the pins,Parameter
+901,"Tp_MMI1X2(length, width, pinwidth=None, offset=0, name='mmi1x2', groupname=None, icon=None, version=None, store_pins=False)",,Template for MMI1x2 in different xsections.,Function
+902,length,float,The length of the MMI,Parameter
+903,width,float,The width of the MMI,Parameter
+904,pinwidth,optional,The width of the pins,Parameter
+905,offset,float,The offset value,Parameter
+906,name,str,The name of the template,Parameter
+907,groupname,optional,The name of the group,Parameter
+908,icon,optional,The icon for the template,Parameter
+909,version,optional,The version of the template,Parameter
+910,store_pins,bool,Whether to store the pins,Parameter
+911,"Tp_MMI2x2(length, width, pinwidth=None, offset=0, name='mmi2x2', groupname=None, icon=None, version=None, store_pins=False)",,Template for MMI2x2.,Function
+912,length,float,The length of the MMI,Parameter
+913,width,float,The width of the MMI,Parameter
+914,pinwidth,optional,The width of the pins,Parameter
+915,offset,float,The offset value,Parameter
+916,name,str,The name of the template,Parameter
+917,groupname,optional,The name of the group,Parameter
+918,icon,optional,The icon for the template,Parameter
+919,version,optional,The version of the template,Parameter
+920,store_pins,bool,Whether to store the pins,Parameter
+921,"Tp_Modefilter(length=98.15, width=36, pinwidth=None, name='modefilter', groupname=None, icon=None, version=None, store_pins=False)",,Template for Modefilter in different xsections.,Function
+922,length,float,The length of the Modefilter,Parameter
+923,width,float,The width of the Modefilter,Parameter
+924,pinwidth,optional,The width of the pins,Parameter
+925,name,str,The name of the template,Parameter
+926,groupname,optional,The name of the group,Parameter
+927,icon,optional,The icon for the template,Parameter
+928,version,optional,The version of the template,Parameter
+929,store_pins,bool,Whether to store the pins,Parameter
+930,nazca.pdk_template_pad,,Module defining black box templates for PDK implementation.,Module
+931,"Tp_DCpad_circle(diameter=100, pinwidth=None, buf_length=10, buf_width=10, name='DCpad', groupname=', xs=None, dclayer=None)",,Template for DC pad in different xsections.,Function
+932,diameter,int,Diameter of the pad,Parameter
+933,pinwidth,int,Width of the pin,Parameter
+934,buf_length,int,Buffer length,Parameter
+935,buf_width,int,Buffer width,Parameter
+936,name,str,Name of the pad,Parameter
+937,groupname,str,Group name of the pad,Parameter
+938,xs,dict,Cross-section details,Parameter
+939,dclayer,str,DC layer details,Parameter
+940,"TP_DCpad_lw(length=100, width=100, pinwidth=None, name='DCpad_lw', xs=None, groupname=', metal_stub_length=2.0, dclayer=None)",,Template for DC pad in different xsections.,Function
+941,length,int,Length of the pad,Parameter
+942,width,int,Width of the pad,Parameter
+943,pinwidth,int,Width of the pin,Parameter
+944,name,str,Name of the pad,Parameter
+945,xs,dict,Cross-section details,Parameter
+946,groupname,str,Group name of the pad,Parameter
+947,metal_stub_length,float,Length of the metal stub,Parameter
+948,dclayer,str,DC layer details,Parameter
+949,"TP_DCpad_rectangle(length=100, tab_width=0, buf_length=10, buf_width=10, pinwidth=None, name='DCpad', groupname=', xs=None, metal_stub_length=2.0, dclayer=None, icon=None)",,Template for a SQUARE DC pad in different xsections.,Function
+950,length,int,Length of the pad,Parameter
+951,tab_width,int,Width of the tab,Parameter
+952,buf_length,int,Buffer length,Parameter
+953,buf_width,int,Buffer width,Parameter
+954,pinwidth,int,Width of the pin,Parameter
+955,name,str,Name of the pad,Parameter
+956,groupname,str,Group name of the pad,Parameter
+957,xs,dict,Cross-section details,Parameter
+958,metal_stub_length,float,Length of the metal stub,Parameter
+959,dclayer,str,DC layer details,Parameter
+960,icon,str,Icon details,Parameter
+961,"Tp_RFpad(length=100, width=100, pinwidth=None, name='pad_rf', groupname=', xs=None, icon=None)",,Template for RF pad in different xsections.,Function
+962,length,int,Length of the pad,Parameter
+963,width,int,Width of the pad,Parameter
+964,pinwidth,int,Width of the pin,Parameter
+965,name,str,Name of the pad,Parameter
+966,groupname,str,Group name of the pad,Parameter
+967,xs,dict,Cross-section details,Parameter
+968,icon,str,Icon details,Parameter
+969,nazca.pdk_template_photodiode,,Module defining black box templates for PDK implementation.,Module
+970,"Tp_PhotoDetector(length=100, width=50, buf=20, name='BBname', groupname='', pinwidth=None, xs=None, icon=None)",,Template for a photodetector with option to draw a metal DC pad.,Class
+971,"Tp_PhotoDetectorRF(length=100, width=50, name='BBname', groupname='', pinwidth=None, xs=None, spaceGS=10, icon=None)",,Template for a photodetector with an option to draw a metal RF GSG pad.,Class
+972,nazca.pdk_template_soa,,Module defining black box templates for PDK implementation.,Module
+973,"TP_SOA(length=250, width=50, padwidth=200, pinwidth=None, dy_io=45, name='soa', groupname='', xs=None, xs_bb=None, pads=False, metallayer='BB', drawmetal=False, icon=None)",,Template for SOA building block.,Function
+974,length,int,length parameter,Parameter
+975,width,int,width parameter,Parameter
+976,padwidth,int,padwidth parameter,Parameter
+977,pinwidth,NoneType,pinwidth parameter,Parameter
+978,dy_io,int,dy_io parameter,Parameter
+979,name,str,name parameter,Parameter
+980,groupname,str,groupname parameter,Parameter
+981,xs,NoneType,xs parameter,Parameter
+982,xs_bb,NoneType,xs_bb parameter,Parameter
+983,pads,bool,pads parameter,Parameter
+984,metallayer,str,metallayer parameter,Parameter
+985,drawmetal,bool,drawmetal parameter,Parameter
+986,icon,NoneType,icon parameter,Parameter
+987,nazca.plotting module,,Module for plotting functionalities in Nazca.,Module
+988,nazca.simglobal,,,Module
+989,"Sim(wl=1.55, pol=0, modes=0,1)",,,Class
+990,nazca.slabmode,,Simple slab mode solver.,Module
+991,"EIM(Mr=None, Mb=None, w=2.0, wl=1.55, name=None, points=100, view=None)",,Simple 3 layer symmetric slab solver.,Class
+992,"plot(title=None, ax=None, **kwargs)",,,Function
+993,printAllModes(),,,Function
+994,printModeInfo(mode=-1),,,Function
+995,nazca.slabsolver,,,Module
+996,nazca.trace,,Module for tracing path lengths.,Module
+997,trace_append(elm),,Add an element to the active trace.,Function
+998,elm,type not specified,element to be added to the trace,Parameter
+999,trace_length(name=None),,"Calculate the trace length. If no trace name is provided, the last closed trace will be used.",Function
+1000,name,str or int,optional id of the trace to get length for,Parameter
+1001,trace_start(name=None),,"Start recording a trace. If no trace name is provided, an ordinal number will be selected.",Function
+1002,name,str or int,optional id of the trace to start,Parameter
+1003,trace_stop(name=None),,"Stop recording on the trace. If no trace id is given, the last started trace is stopped.",Function
+1004,trace_id,str or int,id of the trace to stop,Parameter
+1005,,,"Example showing how to start and stop a trace, and query its length.",Example
+1006,nazca.util,,,Module
+1007,"get_cell_annotation(cell, convert=False)",,Yield the cell's annotations one by one.,Function
+1008,cell,str,GDS cell name,Parameter
+1009,convert,bool,"If convert is False then return XY as integers, as in GDSII file (nm",Parameter
+1010,"get_cell_polygon(cell, convert=False)",,Yield the cell's polygons one by one.,Function
+1011,cell,str,GDS cell name,Parameter
+1012,convert,bool,"If convert is False then return XY as integers, as in GDSII file (nm",Parameter
+1013,"get_cell_polyline(cell, convert=False)",,Yield the cell's polylines one by one.,Function
+1014,cell,str,GDS cell name,Parameter
+1015,convert,bool,"If convert is False then return XY as integers, as in GDSII file (nm",Parameter
+1016,isnotebook(),,Check if code is run in a Jupyter notebook.,Function
+1017,make_iter(x),,"Return x as tuple, if x is not a string and not iterable.",Function
+1018,x,any,the object to be checked and converted if necessary,Parameter
+1019,"md5(x, N=None)",,Return first N characters of md5 hash of argument x. If no N is given the full md5 is returned. The function hashes the (default) string representation of the object.,Function
+1020,x,str,string to hash,Parameter
+1021,N,int,number of characters in the hash,Parameter
+1022,nazca.xsection,,Module defining xsection (cross section) functionality. This includes the Material class.,Module
+1023,"Material(Nmat=None, name='', rgb=())",,Define a material. The material can be a physical material or a virtual material. A virtual material is e.g. a slab layer stack and its index is function of wavelength and polarization. The material contains the Neff and color.,Class
+1024,Material_util(),,Class with utilities to define the effective index on material data.,Class
+1025,"Stack(layers=None, etchdepth=0, background=None, name='', solver=None, view='topview')",,"Class to define layer stacks. A Stack is a list of layers as [(material, width), ...], bottom up with the width (or height) in um. The Stack can be assigned a slab solver having method Neff.",Class
+1026,"Xsection(background=None, layers=None, name='', origin='', description='')",,Define a cross-sectional waveguide structure (XS). A structure refers to a type of optical waveguide or metal line.,Class
+1027,"modaldata(XSfunc, width, modes=None)",,Calculate Neff against waveguide <width> for <modes> number of modes.,Function
+1028,XSfunc,function,function F(width,Parameter
+1029,width,list of float,waveguide width in um,Parameter
+1030,modes,int,number of modes to calculate (if existing,Parameter
+1031,"modalplot(buildXS, width, modes=None)",,Plot modal data.,Function
+1032,buildXS,function,function to build xsection,Parameter
+1033,width,list of float,waveguide width in um,Parameter
+1034,modes,int,number of modes to plot (if existing,Parameter
+1035,,,Three vstacks in a hstack,Example
